@@ -43,10 +43,10 @@
 		741928DB392F518C6045BAD7 /* Pods-RxCocoaExtensions_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxCocoaExtensions_Example.release.xcconfig"; path = "Target Support Files/Pods-RxCocoaExtensions_Example/Pods-RxCocoaExtensions_Example.release.xcconfig"; sourceTree = "<group>"; };
 		74FE80F03E9B5E27772FBA42 /* Pods-RxCocoaExtensions_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxCocoaExtensions_Tests.release.xcconfig"; path = "Target Support Files/Pods-RxCocoaExtensions_Tests/Pods-RxCocoaExtensions_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9A2DE04A6145D8BC00EAFB38 /* Pods_RxCocoaExtensions_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxCocoaExtensions_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AAA9835DA93FD87AB56936E0 /* RxCocoaExtensions.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = RxCocoaExtensions.podspec; path = ../RxCocoaExtensions.podspec; sourceTree = "<group>"; };
-		B13F96A7DA5F15A512BF6B2A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		AAA9835DA93FD87AB56936E0 /* RxCocoaExtensions.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = RxCocoaExtensions.podspec; path = ../RxCocoaExtensions.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B13F96A7DA5F15A512BF6B2A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C8A5D05F36AB6D7CB644D836 /* Pods-RxCocoaExtensions_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxCocoaExtensions_Example.debug.xcconfig"; path = "Target Support Files/Pods-RxCocoaExtensions_Example/Pods-RxCocoaExtensions_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		D1052872EB09DA5949CD2F81 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		D1052872EB09DA5949CD2F81 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +86,6 @@
 				4183E267BD0AE8732A9B7E83 /* Pods-RxCocoaExtensions_Tests.debug.xcconfig */,
 				74FE80F03E9B5E27772FBA42 /* Pods-RxCocoaExtensions_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -227,6 +226,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -315,13 +315,17 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-RxCocoaExtensions_Example/Pods-RxCocoaExtensions_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoaExtensions/RxCocoaExtensions.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoaExtensions.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
