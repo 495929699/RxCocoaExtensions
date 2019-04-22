@@ -1,4 +1,4 @@
-//
+ //
 //  Operators.swift
 //  RxExample
 //
@@ -16,10 +16,10 @@ import AppKit
 
 // Two way binding operator between control property and relay, that's all it takes.
 
-infix operator <-> : DefaultPrecedence
+ infix operator <-> : DefaultPrecedence
 
 #if os(iOS)
-func nonMarkedText(_ textInput: UITextInput) -> String? {
+public func nonMarkedText(_ textInput: UITextInput) -> String? {
     let start = textInput.beginningOfDocument
     let end = textInput.endOfDocument
 
@@ -40,7 +40,7 @@ func nonMarkedText(_ textInput: UITextInput) -> String? {
     return (textInput.text(in: startRange) ?? "") + (textInput.text(in: endRange) ?? "")
 }
 
-func <-> <Base>(textInput: TextInput<Base>, relay: BehaviorRelay<String>) -> Disposable {
+public func <-> <Base>(textInput: TextInput<Base>, relay: BehaviorRelay<String>) -> Disposable {
     let bindToUIDisposable = relay.bind(to: textInput.text)
 
     let bindToRelay = textInput.text
@@ -73,7 +73,7 @@ func <-> <Base>(textInput: TextInput<Base>, relay: BehaviorRelay<String>) -> Dis
 }
 #endif
 
-func <-> <T>(property: ControlProperty<T>, relay: BehaviorRelay<T>) -> Disposable {
+public func <-> <T>(property: ControlProperty<T>, relay: BehaviorRelay<T>) -> Disposable {
     let bindToUIDisposable = relay.bind(to: property)
     let bindToRelay = property
         .subscribe(onNext: { n in
@@ -87,7 +87,7 @@ func <-> <T>(property: ControlProperty<T>, relay: BehaviorRelay<T>) -> Disposabl
 
 
 /// 通用序列双向绑定
-func <-> <T,S : ObservableType & ObserverType>(property: ControlProperty<T>, subject: S) -> Disposable where S.E == T  {
+public func <-> <T,S : ObservableType & ObserverType>(property: ControlProperty<T>, subject: S) -> Disposable where S.E == T  {
     
     let bindToUIDisposable = subject.bind(to: property)
     let bindToRelay = property
