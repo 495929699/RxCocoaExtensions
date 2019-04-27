@@ -14,8 +14,9 @@ import UIKit
 import AppKit
 #endif
 
-// Two way binding operator between control property and relay, that's all it takes.
+// MARK: - 双向绑定
 
+ /// 双向绑定操作符
  infix operator <-> : DefaultPrecedence
 
 #if os(iOS)
@@ -99,3 +100,20 @@ public func <-> <T,S : ObservableType & ObserverType>(property: ControlProperty<
     
     return Disposables.create(bindToUIDisposable, bindToRelay)
 }
+
+ // MARK: - 单向绑定
+ 
+ ///单向操作符
+ infix operator ~> : DefaultPrecedence
+
+ /// 单向绑定 source bindTo target
+ public func ~><S : ObservableType, T : ObserverType>(source : S, target : T) -> Disposable where S.E == T.E {
+    return source.bind(to: target)
+ }
+
+  // MARK: - Disposable相关
+ /// 绑定生命周期
+ public func +=(l : Disposable, r : DisposeBag) {
+    l.disposed(by: r)
+    print("\(l).disposed(by:\(r)")
+ }
