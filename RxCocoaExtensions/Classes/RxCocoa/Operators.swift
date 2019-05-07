@@ -110,10 +110,24 @@ public func <-> <T,S : ObservableType & ObserverType>(property: ControlProperty<
  public func ~><S : ObservableType, T : ObserverType>(source : S, target : T) -> Disposable where S.E == T.E {
     return source.bind(to: target)
  }
+ 
+ public func ~><S : ObservableType, T : ObserverType>(source : S, target : T) -> Disposable where S.E? == T.E {
+    return source.bind(to: target)
+ }
 
   // MARK: - Disposable相关
- /// 绑定生命周期
- public func +=(l : Disposable, r : DisposeBag) {
-    l.disposed(by: r)
-    print("\(l).disposed(by:\(r)")
+ /// 定义优先级组
+ precedencegroup DisposePrecedence {
+    //higherThan: XXX                   // 优先级,比XXX运算高
+    lowerThan: DefaultPrecedence        // 优先级,比DefaultPrecedence运算低
+    associativity: none                 // 结合方向:left, right or none
+    assignment: false                   // true=赋值运算符,false=非赋值运算符
  }
+ 
+ infix operator => : DisposePrecedence
+ /// 绑定生命周期
+ public func =>(l : Disposable, r : DisposeBag) {
+    l.disposed(by: r)
+ }
+
+
