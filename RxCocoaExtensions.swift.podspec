@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RxCocoaExtensions.swift'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = 'RxCocoa+Extensions'
   
   s.description      = <<-DESC
@@ -30,6 +30,6 @@ Pod::Spec.new do |s|
   
   s.source_files = 'RxCocoaExtensions/Classes/**/*.swift'
   
-  s.dependency 'RxCocoa', '~>4.5'
+  s.dependency 'RxCocoa', '~>5.0'
   
 end

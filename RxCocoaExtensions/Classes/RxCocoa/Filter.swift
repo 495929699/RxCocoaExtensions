@@ -10,7 +10,7 @@ import RxSwift
 
 public extension SharedSequence {
     /// 过滤掉nil
-    func filterNil<T>() -> SharedSequence<S,T> where E == Optional<T> {
+    func filterNil<T>() -> SharedSequence<SharingStrategy,T> where Element == Optional<T> {
         return filter({ $0 != nil }).map({ $0! })
     }
 }
