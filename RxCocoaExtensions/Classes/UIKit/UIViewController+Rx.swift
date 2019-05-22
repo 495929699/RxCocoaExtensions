@@ -13,16 +13,20 @@ import RxSwift
 // MARK: - UIViewController
 public extension Reactive where Base : UIViewController {
     
-    // 生命周期相关
-    var didLoad : Observable<Void> {
+    /// hook init(nibName:bundle:) 方法
+    var initialize : Observable<Void> {
+        return methodInvoked(#selector(Base.init(nibName:bundle:))).map({ _ in () })
+    }
+    
+    var viewDidLoad : Observable<Void> {
         return methodInvoked(#selector(Base.viewDidLoad)).map({ _ in () })
     }
     
-    var willAppear : Observable<Void> {
+    var viewWillAppear : Observable<Void> {
         return methodInvoked(#selector(Base.viewWillAppear(_:))).map({ _ in () })
     }
     
-    var didAppear : Observable<Void> {
+    var viewDidAppear : Observable<Void> {
         return methodInvoked(#selector(Base.viewDidAppear(_:))).map({ _ in () })
     }
     
@@ -30,7 +34,7 @@ public extension Reactive where Base : UIViewController {
         return methodInvoked(#selector(Base.viewWillDisappear(_:))).map({ _ in () })
     }
     
-    var didDisappear : Observable<Void> {
+    var viewDidDisappear : Observable<Void> {
         return methodInvoked(#selector(Base.viewDidDisappear(_:))).map({ _ in () })
     }
 
