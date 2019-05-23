@@ -22,4 +22,8 @@ extension DisposeBag {
         disposable.disposed(by: disposeBag)
     }
     
+    public static func ~ (disposables: [Disposable], disposeBag: DisposeBag) {
+        disposeBag.insert(disposables)
+    }
+    
 }
