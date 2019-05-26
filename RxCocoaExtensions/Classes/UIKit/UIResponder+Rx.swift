@@ -11,12 +11,14 @@ import RxCocoa
 
 public extension Reactive where Base: UIResponder {
     
+    /// 注销第一响应者
     var becomeFirstResponder: Binder<Void> {
         return Binder(base) { responder, _ in
             responder.becomeFirstResponder()
         }
     }
     
+    /// 成为第一响应者
     var resignFirstResponder: Binder<Void> {
         return Binder(base) { responder, _ in
             responder.resignFirstResponder()
