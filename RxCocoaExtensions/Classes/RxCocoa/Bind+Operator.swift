@@ -31,6 +31,14 @@ extension ObservableType {
     public static func ~> <O>(observable: Self, observers: [O]) -> Disposable where O : ObserverType, Self.Element? == O.Element  {
         return observable.bind(to: observers)
     }
+    
+    public static func ~> <R>(observable: Self, binder: (Self) -> R) -> R {
+        return observable.bind(to: binder)
+    }
+    
+    public static func ~> (observable: Self, binder: (Self) -> Disposable) -> Disposable {
+        return observable.bind(to: binder)
+    }
 }
 
 extension ObservableType {
@@ -67,6 +75,10 @@ extension SharedSequenceConvertibleType where Self.SharingStrategy == RxCocoa.Dr
         return observable.drive(observers)
     }
 
+    public static func ~> <R>(observable: Self, binder: (Observable<Self.Element>) -> R) -> R {
+        return observable.drive(binder)
+    }
+    
 }
 
 extension SharedSequenceConvertibleType where Self.SharingStrategy == RxCocoa.DriverSharingStrategy {

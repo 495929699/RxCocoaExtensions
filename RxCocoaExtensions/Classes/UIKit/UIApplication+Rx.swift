@@ -20,7 +20,7 @@ public enum AppState {
 /// 扩展
 extension UIApplication.State {
     //将其转为我们自定义的应用状态枚举
-    func toAppState() -> AppState{
+    public func toAppState() -> AppState {
         switch self {
         case .active:
             return .active
@@ -33,7 +33,7 @@ extension UIApplication.State {
 }
 
 //UIApplication的Rx扩展
-extension Reactive where Base: UIApplication {
+public extension Reactive where Base: UIApplication {
     
     /// 代理委托
     var delegate: DelegateProxy<UIApplication, UIApplicationDelegate> {

@@ -15,27 +15,27 @@ public extension Reactive where Base : UIViewController {
     
     /// hook init(nibName:bundle:) 方法
     var initialize : Observable<Void> {
-        return methodInvoked(#selector(Base.init(nibName:bundle:))).map({ _ in () })
+        return methodInvoked(#selector(Base.init(nibName:bundle:))).map({ _ in })
     }
     
     var viewDidLoad : Observable<Void> {
-        return methodInvoked(#selector(Base.viewDidLoad)).map({ _ in () })
+        return methodInvoked(#selector(Base.viewDidLoad)).map({ _ in })
     }
     
     var viewWillAppear : Observable<Void> {
-        return methodInvoked(#selector(Base.viewWillAppear(_:))).map({ _ in () })
+        return methodInvoked(#selector(Base.viewWillAppear(_:))).map({ _ in })
     }
     
     var viewDidAppear : Observable<Void> {
-        return methodInvoked(#selector(Base.viewDidAppear(_:))).map({ _ in () })
+        return methodInvoked(#selector(Base.viewDidAppear(_:))).map({ _ in })
     }
     
     var willDisappear : Observable<Void> {
-        return methodInvoked(#selector(Base.viewWillDisappear(_:))).map({ _ in () })
+        return methodInvoked(#selector(Base.viewWillDisappear(_:))).map({ _ in })
     }
     
     var viewDidDisappear : Observable<Void> {
-        return methodInvoked(#selector(Base.viewDidDisappear(_:))).map({ _ in () })
+        return methodInvoked(#selector(Base.viewDidDisappear(_:))).map({ _ in })
     }
 
 }
