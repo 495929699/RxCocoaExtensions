@@ -25,11 +25,9 @@ extension ObservableType {
     }
     
     public static func ~> <O>(observable: Self, observers: [O]) -> Disposable where O: ObserverType, Self.Element == O.Element {
-        return observable.bind(to: observers)
-    }
-    
-    public static func ~> <O>(observable: Self, observers: [O]) -> Disposable where O : ObserverType, Self.Element? == O.Element  {
-        return observable.bind(to: observers)
+        return observable.subscribe { event in
+            observers.forEach { $0.on(event) }
+        }
     }
     
     public static func ~> <R>(observable: Self, binder: (Self) -> R) -> R {
@@ -38,20 +36,6 @@ extension ObservableType {
     
     public static func ~> (observable: Self, binder: (Self) -> Disposable) -> Disposable {
         return observable.bind(to: binder)
-    }
-}
-
-extension ObservableType {
-    func bind<O>(to observers: [O]) -> Disposable where O: ObserverType, Self.Element == O.Element {
-        let shared = self.share()
-        let disposables = observers.map { shared.bind(to: $0) }
-        return CompositeDisposable(disposables: disposables)
-    }
-    
-    func bind<O>(to observers: [O]) -> Disposable where O: ObserverType, Self.Element? == O.Element {
-        let shared = self.share()
-        let disposables = observers.map { shared.bind(to: $0) }
-        return CompositeDisposable(disposables: disposables)
     }
 }
 
@@ -66,28 +50,13 @@ extension SharedSequenceConvertibleType where Self.SharingStrategy == RxCocoa.Dr
     public static func ~> <O>(observable: Self, observer: O) -> Disposable where O : ObserverType, Self.Element? == O.Element  {
         return observable.drive(observer)
     }
-    
-    public static func ~> <O>(observable: Self, observers: [O]) -> Disposable where O : ObserverType, Self.Element == O.Element {
-        return observable.drive(observers)
-    }
-    
-    public static func ~> <O>(observable: Self, observers: [O]) -> Disposable where O : ObserverType, Self.Element? == O.Element {
-        return observable.drive(observers)
-    }
 
     public static func ~> <R>(observable: Self, binder: (Observable<Self.Element>) -> R) -> R {
         return observable.drive(binder)
     }
     
-}
-
-extension SharedSequenceConvertibleType where Self.SharingStrategy == RxCocoa.DriverSharingStrategy {
-    func drive<O>(_ observers: [O]) -> Disposable where O: ObserverType, Self.Element == O.Element {
-        let disposables = observers.map { self.drive($0) }
-        return CompositeDisposable(disposables: disposables)
+    public static func ~> (observable: Self, binder: (Observable<Self.Element>) -> Disposable) -> Disposable {
+        return observable.drive(binder)
     }
-    func drive<O>(_ observers: [O]) -> Disposable where O: ObserverType, Self.Element? == O.Element {
-        let disposables = observers.map { self.drive($0) }
-        return CompositeDisposable(disposables: disposables)
-    }
+    
 }

@@ -30,7 +30,7 @@ public extension Reactive where Base : UIViewController {
         return methodInvoked(#selector(Base.viewDidAppear(_:))).map({ _ in })
     }
     
-    var willDisappear : Observable<Void> {
+    var viewWillDisappear : Observable<Void> {
         return methodInvoked(#selector(Base.viewWillDisappear(_:))).map({ _ in })
     }
     

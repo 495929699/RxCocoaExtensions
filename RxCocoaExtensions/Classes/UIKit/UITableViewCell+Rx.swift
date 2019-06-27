@@ -10,7 +10,7 @@ import RxSwift
 
 public extension Reactive where Base : UITableViewCell {
     /// hook init(style:reuseIdentifier:)
-    var initialize : Observable<Void> {
+    var initStyle : Observable<Void> {
         return methodInvoked(#selector(Base.init(style:reuseIdentifier:))).map({ _ in })
     }
     /// 重用信号
