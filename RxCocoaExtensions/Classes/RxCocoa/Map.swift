@@ -21,10 +21,10 @@ public extension SharedSequenceConvertibleType {
 }
 
 
-public extension SharedSequenceConvertibleType where E: Collection {
+public extension SharedSequenceConvertibleType where Element: Collection {
     
     /// 将序列中的数组map
-    func mapMany<T>(_ transform: @escaping (E.Element) -> T) -> SharedSequence<SharingStrategy,[T]> {
+    func mapMany<T>(_ transform: @escaping (Element.Element) -> T) -> SharedSequence<SharingStrategy,[T]> {
         return map { collection -> [T] in
             collection.map(transform)
         }

@@ -11,7 +11,7 @@ import RxCocoa
 extension ControlPropertyType {
     
     /// 转换来源
-    public func mapSource(_ transfrom: @escaping (Self.E) -> E) -> ControlProperty<Self.E> {
+    public func mapSource(_ transfrom: @escaping (Self.Element) -> Element) -> ControlProperty<Self.E> {
         return ControlProperty(values: self.asObservable().map(transfrom), valueSink: self)
     }
     

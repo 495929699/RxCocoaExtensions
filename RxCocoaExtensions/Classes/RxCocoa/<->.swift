@@ -19,6 +19,7 @@ import AppKit
 /// 双向绑定操作符
 infix operator <-> : DefaultPrecedence
 
+@discardableResult
 public func <-> <T>(property: ControlProperty<T>, relay: BehaviorRelay<T>) -> Disposable {
     let bindToUIDisposable = relay.bind(to: property)
     let bindToRelay = property
@@ -33,7 +34,8 @@ public func <-> <T>(property: ControlProperty<T>, relay: BehaviorRelay<T>) -> Di
 
 
 /// 通用序列双向绑定
-public func <-> <T,S : ObservableType & ObserverType>(property: ControlProperty<T>, subject: S) -> Disposable where S.E == T  {
+@discardableResult
+public func <-> <T,S : ObservableType & ObserverType>(property: ControlProperty<T>, subject: S) -> Disposable where S.Element == T  {
     
     let bindToUIDisposable = subject.bind(to: property)
     let bindToRelay = property

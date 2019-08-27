@@ -10,13 +10,13 @@ import RxSwift
 
 public extension ObservableConvertibleType {
     
-    func asDriver(onErrorJustReturnClosure: @escaping @autoclosure () -> E) -> Driver<E> {
+    func asDriver(onErrorJustReturnClosure: @escaping @autoclosure () -> Element) -> Driver<Element> {
         return asDriver { _ in
             Driver.just(onErrorJustReturnClosure())
         }
     }
     
-    func asDriverOnErrorJustComplete() -> Driver<E> {
+    func asDriverOnErrorJustComplete() -> Driver<Element> {
         return asDriver { _ in
             Driver.empty()
         }
