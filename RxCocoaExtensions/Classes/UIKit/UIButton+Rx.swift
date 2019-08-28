@@ -35,14 +35,9 @@ public extension Reactive where Base : UIButton {
     
     /// 点击后的Selected
     var tapSelected : ControlProperty<Bool> {
-        let source = controlEvent(.touchUpInside).map { self.base.isSelected }
-        let bindingObserver = Binder<Bool>(base) { (control, value) in
-            if control.isSelected != value {
-                control.isSelected = value
-            }
-        }
-        
-        return ControlProperty(values: source, valueSink: bindingObserver)
+        let source = controlEvent(.touchUpInside)
+            .map { [unowned button = base] in button.isSelected }
+        return ControlProperty(values: source, valueSink: isSelected)
     }
     
 }
