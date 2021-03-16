@@ -30,6 +30,6 @@ Pod::Spec.new do |s|
   
   s.source_files = 'RxCocoaExtensions/Classes/**/*.swift'
   
-  s.dependency 'RxCocoa', '~>5.0'
+  s.dependency 'RxCocoa', '~>6.0'
   
 end

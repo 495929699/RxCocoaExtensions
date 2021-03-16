@@ -34,10 +34,11 @@ public extension Reactive where Base : UIButton {
 public extension Reactive where Base : UIButton {
     
     /// 点击后的Selected
-    var tapSelected : ControlProperty<Bool> {
-        let source = controlEvent(.touchUpInside)
-            .map { [unowned button = base] in button.isSelected }
-        return ControlProperty(values: source, valueSink: isSelected)
-    }
+//    var tapSelected : ControlProperty<Bool> {
+//        let source = controlEvent(.touchUpInside)
+//            .map { [unowned button = base] in button.isSelected }
+//        
+//        return ControlProperty(values: source, valueSink: isSelected)
+//    }
     
 }
